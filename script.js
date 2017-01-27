@@ -78,33 +78,43 @@ if (button2 !=null) button2.onclick = calculate;
 
 function doDraw(){     
 
-
-	
+	var NS = "http://www.w3.org/2000/svg";	
 
 	function createLine(x1,y1,x2,y2){
 
-		var line  = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+		var line  = document.createElementNS(NS, 'line');
 		line.setAttribute("x1",x1);
 		line.setAttribute("x2",x2);
 		line.setAttribute("y1", y1);
 		line.setAttribute("y2", y2);
 		line.setAttribute("stroke", 'black');
-		//line.setAttribute("stroke-width", '1');
 		return line;
 	}   
 
+	function createRect(x0,y0,w,h){
+
+		rect = document.createElementNS(NS, 'rect');
+		rect.setAttribute("x",x0);
+		rect.setAttribute("y",y0);
+		rect.setAttribute("width", w);
+		rect.setAttribute("height", h);
+		rect.setAttribute("stroke", 'black');
+		rect.setAttribute("fill", 'grey');
+		return rect;
+	}
+
 	var height = document.getElementById('height');
 	var width = document.getElementById('width');
-	var length = document.getElementById('length');
+	var count = document.getElementById('count');
 	var batten = document.getElementById('batten');
 
 	var h,w,l,b;
 
 	h = parseInt(height.value)*10;   // window height
 	w = parseInt(width.value)*10;		// window width
-	l = parseInt(length.value);    if (l<1) l = 1;
+	l = parseInt(count.value);    
+	if (l<1) l = 1;
 	b = parseInt(batten.value)*10;
-
 
 	var canva = document.getElementById("canva");
 
@@ -129,30 +139,13 @@ function doDraw(){
 
 	d = (w-(l+1)*b)/l;
 
-
 	while (canva.lastChild) {
 		canva.removeChild(canva.lastChild);
 	}       
 
+	canva.appendChild(createRect(x0,y0,w,h));
 
-	var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-	rect.setAttribute("x",x0);
-	rect.setAttribute("y",y0);
-	rect.setAttribute("width", w);
-	rect.setAttribute("height", h);
-	rect.setAttribute("stroke", 'black');
-	rect.setAttribute("fill", 'grey');
-	canva.appendChild(rect);
-
-	var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-	rect.setAttribute("x",x0+b);
-	rect.setAttribute("y",y0+b);
-	rect.setAttribute("width", w-2*b);
-	rect.setAttribute("height", h-2*b);
-	rect.setAttribute("stroke", 'black');
-	rect.setAttribute("fill", 'grey');
-	canva.appendChild(rect);
-
+	canva.appendChild(createRect(x0+b,y0+b,w-2*b, h-2*b));
 
 	for (var i = 1; i <= l; i++) {        
 
@@ -160,15 +153,38 @@ function doDraw(){
 		canva.appendChild(createLine(x0+(b+d)*i+b,y1+b,x0+(b+d)*i+b,y2-b));
 
 	}   
-
-
 	
 }
+
+function createButtons(){
+
+	var count = this.value;
+	if (count < 1) return;
+	var buttoncount = document.getElementById("buttoncount");
+	var button = buttoncount.getElementsByTagName("button")[0].cloneNode(false);
+	while (buttoncount.lastChild){
+		buttoncount.removeChild(buttoncount.lastChild);
+	}
+	for (var i = 0; i < count; i++) {
+		var newbutton = buttoncount.appendChild(button.cloneNode(false));
+		newbutton.innerHTML = i+1;
+		newbutton.onclick = click;
+	}
+
+}
+
+function click(){
+
+	this.classList.toggle("btn-primary");
+
+}
+
 
 
 var button = document.getElementById("button");
 if (button !=null) button.onclick = doDraw;     
-
+var input = document.getElementById("count");
+if (input != null) input.onchange = createButtons;
 
 
 

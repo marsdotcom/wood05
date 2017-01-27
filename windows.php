@@ -93,53 +93,55 @@
           <div class="col-sm-8">           
 
 
-          <svg width="100%" height="100%" viewBox="0 0 400 300" id="canva" class="svg"> </svg>
+            <svg width="100%" height="100%" viewBox="0 0 400 300" id="canva" class="svg"> </svg>
 
 
+          </div>
+          <div class="col-sm-4">
+            <div class="svg">
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon myspan">Высота в см</span>
+                <input id="height" type="number" value="150" class="form-control" name="msg" placeholder="в см.">
+              </div>
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon myspan">Ширина в см</span>
+                <input id="width" type="number" value="200" class="form-control" name="msg" placeholder="в см.">
+              </div>  
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon myspan">Количество створок</span>
+                <input id="count" type="number" value="1" class="form-control" name="msg" placeholder="шт.">
+              </div>  
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon myspan">Ширина профиля в см</span>
+                <input id="batten" type="number" value="7" class="form-control" name="msg" placeholder="в см.">
+              </div>  
+
+              <div class="input-group input-group-md" id="buttoncount">
+                <button type="button" class="btn btn-default">1</button>
+              </div>
+
+              <button  id="button" class="btn btn-primary btn-md"> DO IT!   </button>
+
+            </div>
+
+          </div>
         </div>
-        <div class="col-sm-4">
-        <div class="svg">
-
-          <div class="input-group input-group-md">
-            <span class="input-group-addon myspan">Высота в см</span>
-            <input id="height" type="number" value="150" class="form-control" name="msg" placeholder="в см.">
-          </div>
-
-          <div class="input-group input-group-md">
-            <span class="input-group-addon myspan">Ширина в см</span>
-            <input id="width" type="number" value="200" class="form-control" name="msg" placeholder="в см.">
-          </div>  
-
-          <div class="input-group input-group-md">
-            <span class="input-group-addon myspan">Количество створок</span>
-            <input id="length" type="number" value="1" class="form-control" name="msg" placeholder="шт.">
-          </div>  
-
-          <div class="input-group input-group-md">
-            <span class="input-group-addon myspan">Ширина профиля в см</span>
-            <input id="batten" type="number" value="7" class="form-control" name="msg" placeholder="в см.">
-          </div>  
-
-          <button  id="button" class="btn btn-primary btn-md"> DO IT!   </button>
-
-          </div>
+      </div><!-- /.container -->
 
 
 
+      <div id="footer">
+        <div class="container">
+          <p class="pull-right"><a class="btn btn-default btn-sm"  href="#"><i  class="glyphicon glyphicon-arrow-up"> </i></a></p>
+          <small>
+            <p>&copy; 2017 WOOD05, Inc. &middot; <a href="#">Все под контролем!</a> &middot; <a href="#">Правила...</a></p>         
+          </small>
         </div>
       </div>
-    </div><!-- /.container -->
-
-
-
-    <div id="footer">
-      <div class="container">
-        <p class="pull-right"><a class="btn btn-default btn-sm"  href="#"><i  class="glyphicon glyphicon-arrow-up"> </i></a></p>
-        <small>
-          <p>&copy; 2017 WOOD05, Inc. &middot; <a href="#">Все под контролем!</a> &middot; <a href="#">Правила...</a></p>         
-       </small>
-     </div>
-   </div>
 
 
     <!-- Bootstrap core JavaScript
@@ -148,7 +150,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
-  
+
 
 
 
