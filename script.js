@@ -89,30 +89,34 @@ function doDraw(){
 		line.setAttribute("y1", y1);
 		line.setAttribute("y2", y2);
 		line.setAttribute("stroke", 'black');
-		line.setAttribute("stroke-width", '2');
+		//line.setAttribute("stroke-width", '1');
 		return line;
 	}   
 
-	var hickness = document.getElementById('thickness');
+	var height = document.getElementById('height');
 	var width = document.getElementById('width');
 	var length = document.getElementById('length');
+	var batten = document.getElementById('batten');
 
-	var h,w,l;
+	var h,w,l,b;
 
-	h = parseInt(thickness.value);   // window height
-	w = parseInt(width.value);		// window width
-	l = parseInt(length.value);     // count of subwindow
+	h = parseInt(height.value)*10;   // window height
+	w = parseInt(width.value)*10;		// window width
+	l = parseInt(length.value);    if (l<1) l = 1;
+	b = parseInt(batten.value)*10;
 
 
 	var canva = document.getElementById("canva");
 
 	var viewBoxValues = canva.getAttribute("viewBox").split(' ');
 
-	var boxWidth = w+10;
-	var boxHeight = h+10;
+	var boxWidth = w;
+	var boxHeight = h;
 
 	viewBoxValues[2] = boxWidth;
-	viewBoxValues[3] = boxHeight;	    
+	viewBoxValues[3] = boxHeight;	  
+
+	canva.setAttribute("viewBox", viewBoxValues.join(' ')) ;
 
 	var x,y1,y2,d,x0,y0;  
 
@@ -123,7 +127,7 @@ function doDraw(){
 	y2 = y1 + h;
 	x = x0;
 
-	d = w/l;
+	d = (w-(l+1)*b)/l;
 
 
 	while (canva.lastChild) {
@@ -137,15 +141,24 @@ function doDraw(){
 	rect.setAttribute("width", w);
 	rect.setAttribute("height", h);
 	rect.setAttribute("stroke", 'black');
-	rect.setAttribute("stroke-width", '2');
+	rect.setAttribute("fill", 'grey');
+	canva.appendChild(rect);
+
+	var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+	rect.setAttribute("x",x0+b);
+	rect.setAttribute("y",y0+b);
+	rect.setAttribute("width", w-2*b);
+	rect.setAttribute("height", h-2*b);
+	rect.setAttribute("stroke", 'black');
 	rect.setAttribute("fill", 'grey');
 	canva.appendChild(rect);
 
 
-	for (var i = 0; i < l; i++) {        
+	for (var i = 1; i <= l; i++) {        
 
-		canva.appendChild(createLine(x,y1,x,y2));
-		x=x+d;
+		canva.appendChild(createLine(x0+(b+d)*i,y1+b,x0+(b+d)*i,y2-b));
+		canva.appendChild(createLine(x0+(b+d)*i+b,y1+b,x0+(b+d)*i+b,y2-b));
+
 	}   
 
 

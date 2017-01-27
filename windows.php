@@ -93,30 +93,36 @@
           <div class="col-sm-8">           
 
 
-          <svg width="100%" height="100%" viewBox="0 0 400 300" id="canva">               
-            <rect id="rect"  x="100" y="100" width="200" height="150" style="fill:grey; stroke-width:2; stroke: black;"/>               
-          </svg>
+          <svg width="100%" height="100%" viewBox="0 0 400 300" id="canva" class="svg"> </svg>
 
 
         </div>
-        <div class="col-sm-4">... 
+        <div class="col-sm-4">
+        <div class="svg">
 
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon myspan">Высота</span>
-            <input id="thickness" type="number" value="150" class="form-control" name="msg" placeholder="Толшина">
+          <div class="input-group input-group-md">
+            <span class="input-group-addon myspan">Высота в см</span>
+            <input id="height" type="number" value="150" class="form-control" name="msg" placeholder="в см.">
           </div>
 
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon myspan">Ширина</span>
-            <input id="width" type="number" value="200" class="form-control" name="msg" placeholder="Ширина">
+          <div class="input-group input-group-md">
+            <span class="input-group-addon myspan">Ширина в см</span>
+            <input id="width" type="number" value="200" class="form-control" name="msg" placeholder="в см.">
           </div>  
 
-          <div class="input-group input-group-sm">
+          <div class="input-group input-group-md">
             <span class="input-group-addon myspan">Количество створок</span>
-            <input id="length" type="number" value="1" class="form-control" name="msg" placeholder="Длина">
+            <input id="length" type="number" value="1" class="form-control" name="msg" placeholder="шт.">
           </div>  
 
-          <button type="button" id="button" class="btn btn-defaul btn-sm"> Нарисовать   </button>
+          <div class="input-group input-group-md">
+            <span class="input-group-addon myspan">Ширина профиля в см</span>
+            <input id="batten" type="number" value="7" class="form-control" name="msg" placeholder="в см.">
+          </div>  
+
+          <button  id="button" class="btn btn-primary btn-md"> DO IT!   </button>
+
+          </div>
 
 
 
