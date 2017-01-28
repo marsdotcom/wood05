@@ -1,81 +1,3 @@
-// For index =========================================================== //
-
-
-
-function calculate(){
-
-	var hickness = document.getElementById('thickness');
-	var width = document.getElementById('width');
-	var length = document.getElementById('length');
-	var cub = document.getElementById('cub');
-	var count = document.getElementById('count');
-
-	var h,w,l,c,co,m;
-
-	th = parseInt(thickness.value);		
-	w = parseInt(width.value);
-	l = parseInt(length.value);
-	c = parseFloat(cub.value);
-	co = parseFloat(count.value);
-
-	if (isNaN(th)) hickness.parentElement.classList.add("has-error"); else hickness.parentElement.classList.remove("has-error");
-	if (isNaN(w)) width.parentElement.classList.add("has-error"); else width.parentElement.classList.remove("has-error");
-	if (isNaN(l)) length.parentElement.classList.add("has-error"); else length.parentElement.classList.remove("has-error");
-
-	var id = his.getAttribute("id"); 
-
-	if (id=="button1") {
-
-		if (isNaN(c)) cub.parentElement.classList.add("has-error"); else cub.parentElement.classList.remove("has-error");
-
-		m = h*w*l;
-
-		if (m==0) co = 0;
-		else{
-			co = c/m*1000000;
-		}
-
-		if(isNaN(co)) {
-			count.value=""; 
-			//count.parentElement.classList.add("has-error");
-		}else	{
-			count.value = co.toFixed(2);
-			count.parentElement.classList.remove("has-error");
-		}
-
-
-	}else{
-
-		if (isNaN(co)) count.parentElement.classList.add("has-error"); else count.parentElement.classList.remove("has-error");
-
-		c = h*w*l*co/1000000;
-
-		if(isNaN(c)) {
-			cub.value="";
-			//cub.parentElement.classList.add("has-error");
-		}else	{
-			cub.value = c.toFixed(2);
-			cub.parentElement.classList.remove("has-error");
-		}
-
-	}
-	
-}
-
-var button1 = document.getElementById('button1');
-if (button1 !=null) button1.onclick = calculate;
-var button2 = document.getElementById('button2');
-if (button2 !=null) button2.onclick = calculate;
-
-
-
-
-// For windows ================================================================================ //
-
-
-
-
-
 function doDraw(){     
 
 	var NS = "http://www.w3.org/2000/svg";	
@@ -91,7 +13,7 @@ function doDraw(){
 		return line;
 	}   
 
-	function createRect(x0,y0,w,h){
+	function createRect(x0,y0,w,h,color='grey'){
 
 		rect = document.createElementNS(NS, 'rect');
 		rect.setAttribute("x",x0);
@@ -99,22 +21,26 @@ function doDraw(){
 		rect.setAttribute("width", w);
 		rect.setAttribute("height", h);
 		rect.setAttribute("stroke", 'black');
-		rect.setAttribute("fill", 'grey');
+		rect.setAttribute("fill", color);
 		return rect;
 	}
 
+	
+
 	var height = document.getElementById('height');
 	var width = document.getElementById('width');
-	var count = document.getElementById('count');
+	var count = document.getElementById('countsub');
 	var batten = document.getElementById('batten');
+	var lapping = document.getElementById('lapping');
 
-	var h,w,l,b;
+	var h,w,l,b,la;
 
 	h = parseInt(height.value)*10;   // window height
 	w = parseInt(width.value)*10;		// window width
 	l = parseInt(count.value);    
 	if (l<1) l = 1;
 	b = parseInt(batten.value)*10;
+	la = parseInt(lapping.value)*10;
 
 	var canva = document.getElementById("canva");
 
@@ -145,14 +71,34 @@ function doDraw(){
 
 	canva.appendChild(createRect(x0,y0,w,h));
 
-	canva.appendChild(createRect(x0+b,y0+b,w-2*b, h-2*b));
+	canva.appendChild(createRect(x0+b,y0+b,w-2*b, h-2*b,'blue'));
 
-	for (var i = 1; i <= l; i++) {        
+	for (var i = 1; i < l; i++) {        
 
-		canva.appendChild(createLine(x0+(b+d)*i,y1+b,x0+(b+d)*i,y2-b));
-		canva.appendChild(createLine(x0+(b+d)*i+b,y1+b,x0+(b+d)*i+b,y2-b));
+		//canva.appendChild(createLine(x0+(b+d)*i,y1+b,x0+(b+d)*i,y2-b));
+		//canva.appendChild(createLine(x0+(b+d)*i+b,y1+b,x0+(b+d)*i+b,y2-b));
 
+		canva.appendChild(createRect(x0+(b+d)*i, y1+b, b, h-2*b ));
 	}   
+
+	var buttoncount = document.getElementById("buttoncount");
+	var buttons = buttoncount.getElementsByClassName("btn-primary");
+
+	for (var i = 0; i < buttons.length; i++) {
+		var n = parseInt(buttons[i].innerHTML)-1;
+		canva.appendChild(createRect(x0+(b+d)*n+b-la, 
+									 y1+b-la,
+									 d+2*la,
+									 h-2*la
+									 ));
+
+		canva.appendChild(createRect(x0+(b+d)*n+2*b-la,
+									 y1+2*b-la,
+									 d-2*la,
+									 h-2*b-2*la,y
+									 'blue'
+									 ));
+	}
 	
 }
 
@@ -176,6 +122,7 @@ function createButtons(){
 function click(){
 
 	this.classList.toggle("btn-primary");
+	doDraw();
 
 }
 
@@ -183,7 +130,7 @@ function click(){
 
 var button = document.getElementById("button");
 if (button !=null) button.onclick = doDraw;     
-var input = document.getElementById("count");
+var input = document.getElementById("countsub");
 if (input != null) input.onchange = createButtons;
 
 

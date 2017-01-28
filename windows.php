@@ -112,13 +112,22 @@
 
               <div class="input-group input-group-md">
                 <span class="input-group-addon myspan">Количество створок</span>
-                <input id="count" type="number" value="1" class="form-control" name="msg" placeholder="шт.">
+                <input id="countsub" type="number" value="1" class="form-control" name="msg" placeholder="шт.">
               </div>  
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon myspan">Нахлест створок</span>
+                <input id="lapping" type="number" value="3" class="form-control" name="msg" placeholder="в см.">
+              </div> 
 
               <div class="input-group input-group-md">
                 <span class="input-group-addon myspan">Ширина профиля в см</span>
                 <input id="batten" type="number" value="7" class="form-control" name="msg" placeholder="в см.">
               </div>  
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon myspan">Открывающиеся створки</span>                
+              </div> 
 
               <div class="input-group input-group-md" id="buttoncount">
                 <button type="button" class="btn btn-default">1</button>
