@@ -24,7 +24,6 @@ function doDraw(){
 		rect.setAttribute("fill", color);
 		return rect;
 	}
-
 	
 
 	var height = document.getElementById('height');
@@ -75,10 +74,11 @@ function doDraw(){
 
 	for (var i = 1; i < l; i++) {        
 
-		//canva.appendChild(createLine(x0+(b+d)*i,y1+b,x0+(b+d)*i,y2-b));
-		//canva.appendChild(createLine(x0+(b+d)*i+b,y1+b,x0+(b+d)*i+b,y2-b));
-
-		canva.appendChild(createRect(x0+(b+d)*i, y1+b, b, h-2*b ));
+		var R = createRect(x0+(b+d)*i, y1+b, b, h-2*b);
+		R.onmousemove = mouseover;
+		R.onmouseout  = mouseout;
+		R.onmousedown = mousedown;
+		canva.appendChild(R);
 	}   
 
 	var buttoncount = document.getElementById("buttoncount");
@@ -87,20 +87,44 @@ function doDraw(){
 	for (var i = 0; i < buttons.length; i++) {
 		var n = parseInt(buttons[i].innerHTML)-1;
 		canva.appendChild(createRect(x0+(b+d)*n+b-la, 
-									 y1+b-la,
-									 d+2*la,
-									 h-2*la
-									 ));
+			y1+b-la,
+			d+2*la,
+			h+2*la-2*b
+			));
 
 		canva.appendChild(createRect(x0+(b+d)*n+2*b-la,
-									 y1+2*b-la,
-									 d-2*la,
-									 h-2*b-2*la,y
-									 'blue'
-									 ));
+			y1+2*b-la,
+			d+2*la-2*b,
+			h+2*la-4*b,
+			'blue'
+			));
 	}
-	
+
+
+	function mouseover(event)
+	{
+		event.target.setAttribute("fill", "#72A27E");
+	}
+
+	function mouseout(event)
+	{
+		event.target.setAttribute("fill", "grey");
+	}
+
+	function mousedown(event){
+
+		var e = event.target.getAttribute("x");
+		var log = document.getElementById("log");
+		log.innerHTML = e;
+
+	}
+
+
 }
+
+
+
+
 
 function createButtons(){
 
@@ -125,8 +149,6 @@ function click(){
 	doDraw();
 
 }
-
-
 
 var button = document.getElementById("button");
 if (button !=null) button.onclick = doDraw;     

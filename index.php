@@ -14,7 +14,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="./somestyle.css" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
 
 <!-- Just for debugging purposes. Don't actually copy this line! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -142,6 +142,7 @@
             </div>
           </div>
         </div>
+        
         <div class="container">
           <!-- Button trigger modal -->
           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
