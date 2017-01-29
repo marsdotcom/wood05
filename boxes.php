@@ -112,7 +112,7 @@
             echo "<table class=\"table table-bordered table-condensed\"><thead ><tr><th>ID</th><th>Name</th><th>@</th></tr></thead><tbody>";
         // output data of each row
             while($row = $result->fetch_assoc()) {
-              echo "<tr><td>".$row["_id"]."</td><td><a href=\"box.php?id=".$row["_id"]."\"/>".$row["name"]."</td><td><button name=".$row["_id"]." id=\"button\" class=\"btn btn-default btn-sm\" type=\"button\"><i class=\"glyphicon glyphicon-list\"></i></button>    </td></tr>";
+              echo "<tr><td>".$row["_id"]."</td><td><a href=\"boxasync.html?id=".$row["_id"]."\"/>".$row["name"]."</td><td><button name=".$row["_id"]." id=\"button\" class=\"btn btn-default btn-sm\" type=\"button\"><i class=\"glyphicon glyphicon-list\"></i></button>    </td></tr>";
             }
             echo "</tbody></table>";
           } else {
