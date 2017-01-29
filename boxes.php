@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://bootstrap-3.ru/examples/starter-template/# -->
 <html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -112,7 +113,7 @@
             echo "<table class=\"table table-bordered table-condensed\"><thead ><tr><th>ID</th><th>Name</th><th>@</th></tr></thead><tbody>";
         // output data of each row
             while($row = $result->fetch_assoc()) {
-              echo "<tr><td>".$row["_id"]."</td><td><a href=\"boxasync.html?id=".$row["_id"]."\"/>".$row["name"]."</td><td><button name=".$row["_id"]." id=\"button\" class=\"btn btn-default btn-sm\" type=\"button\"><i class=\"glyphicon glyphicon-list\"></i></button>    </td></tr>";
+              echo "<tr><td>".$row["_id"]."</td><td><a href=\"boxasync.html?id=".$row["_id"]."\"/>".$row["name"]."</td><td><button value=\"".$row["_id"]."\" class=\"btn btn-default btn-sm tdbutton\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"glyphicon glyphicon-list\"></i></button>    </td></tr>";
             }
             echo "</tbody></table>";
           } else {
@@ -137,11 +138,120 @@
         </div>
 
 
+
+         <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content" >                
+                <div class="modal-body" id="content">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Закрыть</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+      var tds = document.getElementsByClassName("tdbutton");
+      var newtr = document.getElementById("content");
+
+      for (var i=0;i<tds.length;i++)
+      {
+        tds[i].onclick = clicktd;
+     }
+
+
+     function clicktd()
+     {
+      
+       getcontent("get.php?id="+this.getAttribute("value"));
+
+    }   
+
+     function getXmlHttp(){
+      var xmlhttp;
+      try {
+        xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+        try {
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      } catch (E) {
+          xmlhttp = false;
+      }
+  }
+  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    xmlhttp = new XMLHttpRequest();
+}
+return xmlhttp;
+}
+
+
+//============================================================//
+
+function getUrlVar(){
+    var urlVar = window.location.search; // получаем параметры из урла
+    var arrayVar = []; // массив для хранения переменных
+    var valueAndKey = []; // массив для временного хранения значения и имени переменной
+    var resultArray = []; // массив для хранения переменных
+    arrayVar = (urlVar.substr(1)).split('&'); // разбираем урл на параметры
+    if(arrayVar[0]=="") return false; // если нет переменных в урле
+    for (i = 0; i < arrayVar.length; i ++) { // перебираем все переменные из урла
+        valueAndKey = arrayVar[i].split('='); // пишем в массив имя переменной и ее значение
+        resultArray[valueAndKey[0]] = valueAndKey[1]; // пишем в итоговый массив имя переменной и ее значение
+    }
+    return resultArray; // возвращаем результат
+}
+
+var gets = getUrlVar();
+
+var xmlhttp = getXmlHttp();
+
+
+
+function getcontent(url){
+
+    xmlhttp.open('GET', url, true);
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+           if(xmlhttp.status == 200) {
+             newtr.innerHTML = xmlhttp.responseText;
+             var buttons = document.getElementsByClassName("pagea");
+
+             if (buttons != null) 
+                 for (var i=0;i<buttons.length;i++){
+
+                    buttons[i].onclick = click;
+                }
+           
+            }
+        }
+    };
+    xmlhttp.send(null);
+
+}
+
+
+function click(){
+
+    var url = this.getAttribute("value");
+    getcontent(url);
+
+}
+
+
+
+ </script>
 
 
   </body></html>

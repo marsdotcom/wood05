@@ -171,8 +171,7 @@ function getcontent(url){
              if (buttons != null) 
                  for (var i=0;i<buttons.length;i++){
 
-                    buttons[0].onclick = click;
-                    buttons[1].onclick = click;
+                    buttons[i].onclick = click;
                 }
             }
         }
@@ -195,8 +194,8 @@ var buttons = document.getElementsByClassName("pagea");
 if (buttons != null) 
  for (var i=0;i<buttons.length;i++){
 
-    buttons[0].onclick = click;
-    buttons[1].onclick = click;
+    buttons[i].onclick = click;
+
 }
 
 
