@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
 ?>
 
 
-<h2 >Ящик  <?php   echo $name; ?> </h1>
+<h2 >Ящик  <?php   echo $name; ?> </h2>
 
    <ul class="nav nav-tabs ">
       <li class="active"><a data-toggle="tab" href="#home">Рейки</a></li>
@@ -120,8 +120,8 @@ if ($result->num_rows > 0) {
    }         
 
    echo "<ul class=\"pager\">";
-   if ($p > -1) echo  "<li ><button class=\"pagea\" value=\"get.php?id=".$arr[$p]."\">Предыдущий ящик</button></li>";
-   if ($n < $i)echo  "<li ><button class=\"pagea\" value=\"get.php?id=".$arr[$n]."\">Следующий ящик</button></li>";
+   if ($p > -1) echo  "<li ><button class=\"pagea btn btn-default\" value=\"get.php?id=".$arr[$p]."\">Предыдущий ящик</button></li>";
+   if ($n < $i)echo  "<li ><button class=\"pagea btn btn-default\" value=\"get.php?id=".$arr[$n]."\">Следующий ящик</button></li>";
    echo " </ul>";          
 
 

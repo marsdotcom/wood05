@@ -72,7 +72,7 @@
             <ul class="nav navbar-nav">
               <li ><a href="index.php">Калькулятор</a></li>
               <li ><a href="boxes.php">Ящики</a></li>
-              <li class="active"><a href="#contact">Окна</a></li>
+              <li ><a href="windows.php">Окна</a></li>
               <li><a href="#contact">Контакты</a></li>
               <li class="dropdown">
                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Портфолио
@@ -159,6 +159,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
+    <script src="setactive.js"></script>
 
 
 

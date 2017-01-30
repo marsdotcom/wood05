@@ -78,11 +78,12 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Портфолио
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li class="active"> <a href="bower.php">Беседки</a></li>
+                    <li> <a href="bower.php">Беседки</a></li>
                     <li><a href="stairs.php">Лестницы</a></li>
                     <li><a href="#">Другое</a></li>
                   </ul>
                 </li>
+                <li><a href="inter.php">Вход</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
@@ -157,6 +158,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="setactive.js"></script>
 
 
   </body></html>

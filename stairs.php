@@ -79,9 +79,10 @@
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li > <a href="bower.php">Беседки</a></li>
-                  <li class="active"><a href="#">Лестницы</a></li>
+                  <li ><a href="stairs.php">Лестницы</a></li>
                   <li><a href="#">Другое</a></li>
                 </ul>
+                <li><a href="inter.php">Вход</a></li>
               </li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -153,6 +154,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="setactive.js"></script>
 
 
   </body></html>

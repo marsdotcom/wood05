@@ -55,7 +55,7 @@
 
     <body>
 
-    
+
 
 
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -72,87 +72,86 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li ><a href="index.php">Калькулятор</a></li>
-              <li class="active"><a href="#about">Ящики</a></li>
+              <li ><a href="boxes.php">Ящики</a></li>
               <li><a href="windows.php">Окна</a></li>
               <li><a href="#contact">Контакты</a></li>
               <li class="dropdown">
-                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Портфолио
-                  <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li > <a href="bower.php">Беседки</a></li>
-                    <li><a href="stairs.php">Лестницы</a></li>
-                    <li><a href="#">Другое</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div><!--/.nav-collapse -->
-          </div>
+               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Портфолио
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li > <a href="bower.php">Беседки</a></li>
+                  <li><a href="stairs.php">Лестницы</a></li>
+                  <li><a href="#">Другое</a></li>
+                </ul>
+              </li>
+              <li><a href="inter.php">Вход</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
 
-        <div class="container">
+      <div class="container">
 
 
-          <h1 class="cover-heading">Ящики:</h1>
-          <?php
-          $servername = "localhost";
-          $username = "marsdotco0_base1";
-          $password = "defolt";
-          $dbname = "marsdotco0_base1";
+        <h1 class="cover-heading">Ящики:</h1>
+        <?php
+        $servername = "localhost";
+        $username = "marsdotco0_base1";
+        $password = "defolt";
+        $dbname = "marsdotco0_base1";
 
           // Create connection
-          $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($servername, $username, $password, $dbname);
           // Check connection
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          } 
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        } 
 
-          $sql = "SELECT * FROM products";
-          $result = $conn->query($sql);
+        $sql = "SELECT * FROM products";
+        $result = $conn->query($sql);
 
-          if ($result->num_rows > 0) {
-            echo "<table class=\"table table-bordered table-condensed\"><thead ><tr><th>ID</th><th>Name</th><th>@</th></tr></thead><tbody>";
+        if ($result->num_rows > 0) {
+          echo "<table class=\"table table-bordered table-condensed\"><thead ><tr><th>ID</th><th>Name</th><th>@</th></tr></thead><tbody>";
         // output data of each row
-            while($row = $result->fetch_assoc()) {
-              echo "<tr><td>".$row["_id"]."</td><td><a href=\"boxasync.html?id=".$row["_id"]."\"/>".$row["name"]."</td><td><button value=\"".$row["_id"]."\" class=\"btn btn-default btn-sm tdbutton\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"glyphicon glyphicon-list\"></i></button>    </td></tr>";
-            }
-            echo "</tbody></table>";
-          } else {
-            echo "0 results";
+          while($row = $result->fetch_assoc()) {
+            echo "<tr><td>".$row["_id"]."</td><td><a href=\"boxasync.html?id=".$row["_id"]."\"/>".$row["name"]."</td><td><button value=\"".$row["_id"]."\" class=\"btn btn-default btn-sm tdbutton\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"glyphicon glyphicon-list\"></i></button>    </td></tr>";
           }
-          $conn->close();
-          ?>
+          echo "</tbody></table>";
+        } else {
+          echo "0 results";
+        }
+        $conn->close();
+        ?>
 
 
 
 
-        </div><!-- /.container -->
+      </div><!-- /.container -->
 
-        <div id="footer">
-          <div class="container">
-            <p class="pull-right"><a class="btn btn-default btn-sm"  href="#"><i  class="glyphicon glyphicon-arrow-up"> </i></a></p>
-            <small>
-              <p>&copy; 2017 WOOD05, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-              
-            </small>
-          </div>
+      <div id="footer">
+        <div class="container">
+          <p class="pull-right"><a class="btn btn-default btn-sm"  href="#"><i  class="glyphicon glyphicon-arrow-up"> </i></a></p>
+          <small>
+            <p>&copy; 2017 WOOD05, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+
+          </small>
         </div>
+      </div>
 
 
 
-         <!-- Modal -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md">
-              <div class="modal-content" >                
-                <div class="modal-body" id="content">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Закрыть</button>
-                </div>
-              </div>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" >                
+            <div class="modal-body" id="content">
+              ...
             </div>
+            
           </div>
         </div>
+      </div>
+    </div>
 
 
 
@@ -161,6 +160,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="setactive.js"></script>
 
     <script>
       var tds = document.getElementsByClassName("tdbutton");
@@ -169,89 +169,72 @@
       for (var i=0;i<tds.length;i++)
       {
         tds[i].onclick = clicktd;
-     }
+      }
 
 
-     function clicktd()
-     {
-      
+      function clicktd()
+      {
+
        getcontent("get.php?id="+this.getAttribute("value"));
 
-    }   
+     }   
 
      function getXmlHttp(){
       var xmlhttp;
       try {
         xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-    } catch (e) {
+      } catch (e) {
         try {
           xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      } catch (E) {
+        } catch (E) {
           xmlhttp = false;
-      }
-  }
-  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-    xmlhttp = new XMLHttpRequest();
-}
-return xmlhttp;
-}
-
-
-//============================================================//
-
-function getUrlVar(){
-    var urlVar = window.location.search; // получаем параметры из урла
-    var arrayVar = []; // массив для хранения переменных
-    var valueAndKey = []; // массив для временного хранения значения и имени переменной
-    var resultArray = []; // массив для хранения переменных
-    arrayVar = (urlVar.substr(1)).split('&'); // разбираем урл на параметры
-    if(arrayVar[0]=="") return false; // если нет переменных в урле
-    for (i = 0; i < arrayVar.length; i ++) { // перебираем все переменные из урла
-        valueAndKey = arrayVar[i].split('='); // пишем в массив имя переменной и ее значение
-        resultArray[valueAndKey[0]] = valueAndKey[1]; // пишем в итоговый массив имя переменной и ее значение
-    }
-    return resultArray; // возвращаем результат
-}
-
-var gets = getUrlVar();
-
-var xmlhttp = getXmlHttp();
-
-
-
-function getcontent(url){
-
-    xmlhttp.open('GET', url, true);
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4) {
-           if(xmlhttp.status == 200) {
-             newtr.innerHTML = xmlhttp.responseText;
-             var buttons = document.getElementsByClassName("pagea");
-
-             if (buttons != null) 
-                 for (var i=0;i<buttons.length;i++){
-
-                    buttons[i].onclick = click;
-                }
-           
-            }
         }
-    };
-    xmlhttp.send(null);
-
-}
-
-
-function click(){
-
-    var url = this.getAttribute("value");
-    getcontent(url);
-
-}
+      }
+      if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+        xmlhttp = new XMLHttpRequest();
+      }
+      return xmlhttp;
+    }
 
 
 
- </script>
+    var xmlhttp = getXmlHttp();
 
 
-  </body></html>
+
+    function getcontent(url){
+
+      xmlhttp.open('GET', url, true);
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+         if(xmlhttp.status == 200) {
+           newtr.innerHTML = "<button class=\"btn btn-default btn-sm pull-right\" data-dismiss=\"modal\">X</button> " + xmlhttp.responseText;
+           var buttons = document.getElementsByClassName("pagea");
+
+           if (buttons != null) 
+             for (var i=0;i<buttons.length;i++){
+
+              buttons[i].onclick = click;
+            }
+
+          }
+        }
+      };
+      xmlhttp.send(null);
+
+    }
+
+
+    function click(){
+
+      var url = this.getAttribute("value");
+      getcontent(url);
+
+    }
+
+
+
+  </script>
+
+
+</body></html>
