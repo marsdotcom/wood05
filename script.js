@@ -24,22 +24,19 @@ function doDraw(){
 		rect.setAttribute("fill", color);
 		return rect;
 	}
+
+	
 	
 
-	var height = document.getElementById('height');
-	var width = document.getElementById('width');
-	var count = document.getElementById('countsub');
-	var batten = document.getElementById('batten');
-	var lapping = document.getElementById('lapping');
+	var 
 
-	var h,w,l,b,la;
-
-	h = parseInt(height.value)*10;   // window height
-	w = parseInt(width.value)*10;		// window width
-	l = parseInt(count.value);    
-	if (l<1) l = 1;
-	b = parseInt(batten.value)*10;
+	h = parseInt(height.value)*10,  // window height
+	w = parseInt(width.value)*10,		// window width
+	l = parseInt(count.value), 	
+	b = parseInt(batten.value)*10,
 	la = parseInt(lapping.value)*10;
+
+	if (l<1) l = 1;
 
 	var canva = document.getElementById("canva");
 
@@ -100,6 +97,8 @@ function doDraw(){
 			));
 	}
 
+	SaveCookie();
+
 
 	function mouseover(event)
 	{
@@ -119,16 +118,14 @@ function doDraw(){
 
 	}
 
-
 }
 
 
 
 
 
-function createButtons(){
-
-	var count = this.value;
+function createButtons(count){
+	
 	if (count < 1) return;
 	var buttoncount = document.getElementById("buttoncount");
 	var button = buttoncount.getElementsByTagName("button")[0].cloneNode(false);
@@ -143,6 +140,13 @@ function createButtons(){
 
 }
 
+function change()
+{
+	createButtons(this.value);
+}
+
+
+
 function click(){
 
 	this.classList.toggle("btn-primary");
@@ -150,10 +154,78 @@ function click(){
 
 }
 
+
+
+
+//==================================COOKIE ===================================//
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i <ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}
+
+function setCookie(cname, cvalue, exdays=7) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires="+d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+//============================================================================//
+
+
+var height = document.getElementById('height');
+var width = document.getElementById('width');
+var count = document.getElementById('countsub');
+var batten = document.getElementById('batten');
+var lapping = document.getElementById('lapping');
+
+(function LoadCookie(){
+
+	var ch = getCookie('height'),
+	cw = getCookie('width'),
+	cc = getCookie('count'),
+	cb = getCookie('batten'),
+	cla = getCookie('lapping');
+
+	if (ch!="") height.value = ch;
+	if (cw!="") width.value = cw;
+	if (cc!="") count.value = cc;
+	if (cb!="") batten.value = cb;
+	if (cla!="") lapping.value = cla;
+})();
+
+
+function SaveCookie(){
+
+	setCookie('height',height.value);
+	setCookie('width',width.value);
+	setCookie('count',count.value);
+	setCookie('batten',batten.value);
+	setCookie('lapping',lapping.value);
+}
+
 var button = document.getElementById("button");
 if (button !=null) button.onclick = doDraw;     
 var input = document.getElementById("countsub");
-if (input != null) input.onchange = createButtons;
+if (input != null) input.onchange = change;
+
+createButtons(input.value);
+doDraw();
+
+
+
+
+
 
 
 

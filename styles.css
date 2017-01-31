@@ -95,6 +95,7 @@ body {
 
     .svg{
     	padding-top: 10px;
+      max-height: 500px;
     }
 
 
