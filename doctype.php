@@ -10,14 +10,18 @@
 
 <title>
   <?php  
+  $title = "";
   switch (substr($_SERVER['PHP_SELF'],1)) {
 
-    case "index.php": echo "Калькулятор расчета кубатуры досок"; break;
-    case "windows.php": echo "Калькулятор расчета окон"; break;
-    case "inter.php": echo "Вход на сайт"; break;      
-    default: echo "WOOD05"; break;
+    case "index.php": $title = "Калькулятор расчета кубатуры досок"; break;
+    case "windows.php": $title = "Калькулятор расчета окон"; break;
+    case "inter.php": $title = "Вход на сайт"; break;      
+    default: $title = "WOOD05"; break;
 
-  } ;  
+  } ;   
+  echo $title;
+
+
   ?>
 </title>
 
@@ -79,7 +83,10 @@
                     <li><a href="#">Другое</a></li>
                   </ul>
                 </li>
-                <li><a href="inter.php">Вход</a></li>
+                <li><a href="inter.php">
+                  <?php if(isset($_SESSION['login'])) 
+                    echo $_SESSION['login'];
+                    else echo "Вход";  ?></a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>

@@ -1,4 +1,4 @@
-<?php  include "doctype.php"  ?>
+<?php session_start();  include "doctype.php"  ?>
 
         <div class="container">
           <div class="row">

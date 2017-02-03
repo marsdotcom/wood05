@@ -1,4 +1,4 @@
-<?php  include "doctype.php"  ?>
+<?php  session_start();  include "doctype.php"  ?>
 
       <div class="container">
       <h1 class="text-center" >Калькулятор расчета окон</h1>  <br> 
