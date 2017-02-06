@@ -21,6 +21,17 @@ if(isset($_POST['login'])) {   // Проверка логина и пароля.
   $login = $_POST['login'];
   $pass = $_POST['pass'] ;
 
+  $servername = "localhost";
+  $username = "marsdotco0_base1";
+  $password = "defolt";
+  $dbname = "marsdotco0_base1";
+
+          // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+          // Check connection
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  } 
   
 
   $sql = "SELECT * FROM users WHERE login='$login'  AND  password='$pass'";
@@ -88,6 +99,7 @@ switch ($view) {
     # code...
     break;
 }
+
 
  include "foot.php" ?>
 

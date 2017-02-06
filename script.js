@@ -23,9 +23,7 @@ function doDraw(){
 		rect.setAttribute("stroke", 'black');
 		rect.setAttribute("fill", color);
 		return rect;
-	}
-
-	
+	}	
 	
 
 	var 
@@ -75,6 +73,7 @@ function doDraw(){
 		R.onmousemove = mouseover;
 		R.onmouseout  = mouseout;
 		R.onmousedown = mousedown;
+		R.name = i;
 		canva.appendChild(R);
 	}   
 
@@ -82,7 +81,9 @@ function doDraw(){
 	var buttons = buttoncount.getElementsByClassName("btn-primary");
 
 	for (var i = 0; i < buttons.length; i++) {
+
 		var n = parseInt(buttons[i].innerHTML)-1;
+		
 		canva.appendChild(createRect(x0+(b+d)*n+b-la, 
 			y1+b-la,
 			d+2*la,
@@ -100,23 +101,7 @@ function doDraw(){
 	SaveCookie();
 
 
-	function mouseover(event)
-	{
-		event.target.setAttribute("fill", "#72A27E");
-	}
-
-	function mouseout(event)
-	{
-		event.target.setAttribute("fill", "grey");
-	}
-
-	function mousedown(event){
-
-		var e = event.target.getAttribute("x");
-		var log = document.getElementById("log");
-		log.innerHTML = e;
-
-	}
+	drawWindow(generateScript());
 
 }
 
@@ -129,14 +114,35 @@ function createButtons(count){
 	if (count < 1) return;
 	var buttoncount = document.getElementById("buttoncount");
 	var button = buttoncount.getElementsByTagName("button")[0].cloneNode(false);
+
 	while (buttoncount.lastChild){
 		buttoncount.removeChild(buttoncount.lastChild);
 	}
+
 	for (var i = 0; i < count; i++) {
 		var newbutton = buttoncount.appendChild(button.cloneNode(false));
 		newbutton.innerHTML = i+1;
 		newbutton.onclick = click;
 	}
+
+	//============================================================//
+
+	var divcount = document.getElementById("setting");
+	var div = divcount.getElementsByClassName("setting")[0].cloneNode(true);
+
+	while (divcount.lastChild) {
+
+		divcount.removeChild(divcount.lastChild);
+	}
+
+	for (var i=0;i<count;i++){
+
+		var newdiv = divcount.appendChild(div.cloneNode(true));
+		newdiv.getElementsByClassName("number")[0].innerHTML = i+1;
+
+	}
+
+
 
 }
 
@@ -171,6 +177,7 @@ function getCookie(cname) {
 			return c.substring(name.length, c.length);
 		}
 	}
+
 	return "";
 }
 
@@ -221,6 +228,51 @@ if (input != null) input.onchange = change;
 
 createButtons(input.value);
 doDraw();
+
+
+
+function generateScript(subscipt=""){
+
+	var arr = [];
+
+	arr.push(parseInt(height.value));		
+	arr.push(parseInt(width.value));
+	arr.push(parseInt(batten.value));
+	arr.push(parseInt(lapping.value));
+	arr.push(parseInt(count.value));			// 4
+
+	for (var i=0;i<arr[4];i++){
+
+		arr.push("0");
+
+	}
+
+	if (subscipt == ""){
+
+		var x = (arr[1]-(1+arr[4])*arr[2])/arr[4]+arr[2];
+
+		for (i=1;i<arr[4];i++){		
+
+			arr.push(x);
+			x = x*2;
+
+		}
+
+		return arr.join(':');
+	}else {
+
+		return arr.join(':')+subscipt;
+	}
+
+}
+
+
+
+function drawWindow(script) {
+	
+	var a = script.split(':');
+
+}
 
 
 

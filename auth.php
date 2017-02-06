@@ -80,3 +80,5 @@ if (isset($_POST['login'])) {
 
 
 <?php  include  "foot.php"; ?>
+
+</body></html>
