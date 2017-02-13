@@ -1,20 +1,38 @@
+<?php $self = substr($_SERVER['PHP_SELF'],1); ?>
+
+
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://bootstrap-3.ru/examples/starter-template/# -->
 <html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
+<meta name="description" content=<?php  
+  $title = "";
+  switch ($self) {
+
+    case "index.php": $title = "Калькулятор расчета кубатуры досок, количества досок в кубе"; break;
+    case "windows.php": $title = "Калькулятор расчета окон"; break;
+    case "contact.php": $title = "Контакты"; break;
+    case "inter.php": $title = "Вход на сайт"; break;      
+    default: $title = "WOOD05"; break;
+
+  } ;   
+  echo '"'.$title.'"';
+
+
+  ?>>
 <meta name="author" content="marsdotcom">
 <link rel="shortcut icon" href="favicon.ico">
 
 <title>
   <?php  
   $title = "";
-  switch (substr($_SERVER['PHP_SELF'],1)) {
+  switch ($self) {
 
     case "index.php": $title = "Калькулятор расчета кубатуры досок"; break;
     case "windows.php": $title = "Калькулятор расчета окон"; break;
+    case "contact.php": $title = "Контакты"; break;
     case "inter.php": $title = "Вход на сайт"; break;      
     default: $title = "WOOD05"; break;
 
@@ -71,9 +89,10 @@
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
                 <li ><a href="index.php">Калькулятор</a></li>
-                <li ><a href="boxes.php">Ящики</a></li>
+                <?php if (isset($_SESSION['login'])) 
+                echo '<li ><a href="boxes.php">Ящики</a></li>'; ?>
                 <li ><a href="windows.php">Окна</a></li>
-                <!--    <li><a href="#contact">Контакты</a></li> -->
+                <li><a href="contact.php">Контакты</a></li>
                 <li class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Портфолио
                   <span class="caret"></span></a>

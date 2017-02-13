@@ -70,9 +70,6 @@ function doDraw(){
 	for (var i = 1; i < l; i++) {        
 
 		var R = createRect(x0+(b+d)*i, y1+b, b, h-2*b);
-		R.onmousemove = mouseover;
-		R.onmouseout  = mouseout;
-		R.onmousedown = mousedown;
 		R.name = i;
 		canva.appendChild(R);
 	}   
@@ -83,7 +80,7 @@ function doDraw(){
 	for (var i = 0; i < buttons.length; i++) {
 
 		var n = parseInt(buttons[i].innerHTML)-1;
-		
+
 		canva.appendChild(createRect(x0+(b+d)*n+b-la, 
 			y1+b-la,
 			d+2*la,
